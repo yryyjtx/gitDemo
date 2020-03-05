@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 当你点击 <router-link> 时，这个方法会在内部调用，所以说，点击 <router-link :to="..."> 
+      等同于调用 router.push(...) -->
+    <h1>今天天气不错</h1>
+    <router-link to="/c">go c</router-link>
+    <router-link to="/d">go d</router-link>
+    <router-link to="/e">go e</router-link>
+    <router-view>
+    </router-view>
+
+
+  </div>
+
+  <script>
+    let c={
+      template:`<h2>ccccccccccc</h2>`
+    }
+    let d={
+      template:`<h2>dddddddddddd</h2>`
+    }
+    let e={
+      template:`<h2>eeeeeeeeeeee</h2>`
+    }
+    let routes=[
+      {
+        path:"/c",
+        component:c
+      },
+      {
+        path:"/d",
+        component:d
+      },
+      {
+        path:"/e",
+        component:e
+      }
+    ]
+
+    let router=new VueRouter({
+      routes
+    });
+    new Vue({
+      el:"#app",
+      router
+    })
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+
+<body>
+  <div id=app>
+    <home></home>
+    <!-- 使用 router-link 组件来导航. -->
+    <!-- 通过传入 `to` 属性指定链接. -->
+    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+    <ul>
+      <router-link to="/foo/:id" tag="button">go to foo</router-link>
+      <router-link to="/bar" tag="button">go to bar</router-link>
+    </ul>
+
+      <!-- 路由出口 -->
+      <!-- 路由匹配到的组件将渲染在这里 -->
+    <router-view class='default'></router-view>
+    <router-view name='a' class='aa'></router-view>
+    <router-view name='b' class='bb'></router-view>
+    <router-view name='c' class='cc'></router-view>
+  </div>
+  <script>
+
+    let home = { template: "<h1>欢迎来打破VUE的世界</h1>" }
+    
+    let foo = {
+      template: "<h2>foo</h2>"
+    }
+    let bar = {
+      template: "<h2>bar</h2>",
+    }
+    let banner = {
+      template: "<h2>banner</h2>",
+    }
+    let side = {
+      template: "<h2>side</h2>",
+    }
+    let card = {
+      template: "<span>card<span>"
+    }
+    let routes = [
+      {
+        path: "/foo/:id",
+        components: {
+          default: foo,
+          a: side,
+          b: banner,
+          c: card
+        }
+      },
+      {
+        path: "/bar",
+        component:bar
+      }
+    ]
+
+    let router = new VueRouter({
+      routes,
+      // 可以自定义被激活路由元素的class名称
+      // linkActiveClass: "layui-btn layui-btn-warm",
+      // linkExactActiveClass: "layui-btn-radius"
+    })
+
+    let ele = new Vue({
+      el: "#app",
+      router,
+      components: {
+        home
+      }
+    })  
+  </script>
+</body>
+
+</html>
